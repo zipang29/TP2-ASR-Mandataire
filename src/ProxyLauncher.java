@@ -1,7 +1,7 @@
-public class ServerLauncher {
+public class ProxyLauncher {
 
 	public static void main( String[] args ) {
-		int port = 1099 ;
+		int port = 1100 ;
 		if ( args.length != 1 ) { 
 			help() ; 
 		}
@@ -14,17 +14,13 @@ public class ServerLauncher {
 				System.out.println( "[-] Le n° de port n'a pas été correctement mis : " + e.getMessage() ) ;
 			}
 		}
-		try {
-			new Server( port ) ;
-		}
-		catch ( java.io.IOException e ) {
-			System.out.println( "[-] Problème d'IO : " + e.getMessage() ) ;
-		}
+		new Proxy( port , "localhost" , 1099) ;
+		System.out.println( "[+] Serveur de chat lancé sur le port " + port ) ;
 	}
 
 	private static void help() {
-		String help = "\nUsage : java Launcher <port>\n" ;
-		help += "\nSi le port n'est pas défini 1099 sera attribué.\n\n" ;
+		String help = "\nUsage : java ProxyLauncher <port>\n" ;
+		help += "\nSi le port n'est pas défini 1100 sera attribué.\n\n" ;
 		System.out.println( help ) ;
 	}
 }
