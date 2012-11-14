@@ -32,9 +32,9 @@ public class Proxy {
 				System.out.println( "[~] Informations sur le client : " + call ) ;
 				// Connexion en tant que client au chat
 				Socket socket = new Socket( this.chatIP , this.chatPort ) ;
-				System.out.println( "[~] co au chat : " + socket ) ;
 				DataOutputStream outS = new DataOutputStream( socket.getOutputStream() ) ;
 				DataInputStream inS = new DataInputStream( socket.getInputStream() ) ;
+				System.out.println( "[~] co au chat : " + socket ) ;
 				// Création des Treads
 				( new myThread( inS , outC ) ).start() ;
 				( new myThread( inC , outS ) ).start() ;

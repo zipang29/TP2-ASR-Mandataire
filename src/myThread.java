@@ -12,22 +12,17 @@ public class myThread extends Thread {
 	}
 
 	public void run() {
-		while ( this.in != null ) {
-			try {
-				String tmp = this.in.readUTF() ;
-				if ( tmp == null || tmp.isEmpty() ) {
-					this.out.close() ;
-					this.in.close() ;
-					this.in = null ;
-				}
-				else {
-					System.out.println( "[~] tmp = " + tmp ) ;
-					this.out.writeUTF( tmp ) ;
-					this.out.flush() ;
-				}
-			} catch ( java.io.IOException e ) {
-				e.printStackTrace() ;
+		try {
+			byte[] b = new byte[256] ;
+			int n = this.in.read( b ) ;
+			while ( n != 0 ) {
+				this.out.write( b ) ;
+				this.out.flush() ;
+				System.out.println( "[~] message transmis : '" + (new String( b )).toString() ) + "'" ;
+				n = this.in.read( b ) ;
 			}
+		} catch ( java.io.IOException e ) {
+			e.printStackTrace() ;
 		}
 	}
 }
