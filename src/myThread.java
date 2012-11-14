@@ -16,9 +16,9 @@ public class myThread extends Thread {
 			byte[] b = new byte[256] ;
 			int n = this.in.read( b ) ;
 			while ( n != 0 ) {
-				this.out.write( b ) ;
+				this.out.write( b , 0 , n ) ;
 				this.out.flush() ;
-				System.out.println( "[~] message transmis : '" + (new String( b )).toString() ) + "'" ;
+				System.out.println( "[~] message transmis : '" + (new String( b )).toString() + "'" ) ;
 				n = this.in.read( b ) ;
 			}
 		} catch ( java.io.IOException e ) {
