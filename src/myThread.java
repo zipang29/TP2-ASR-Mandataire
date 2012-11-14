@@ -19,6 +19,7 @@ public class myThread extends Thread {
 				this.out.write( b , 0 , n ) ;
 				this.out.flush() ;
 				System.out.println( "[~] message transmis : '" + (new String( b )).toString() + "'" ) ;
+				for ( int i = 0 ; i < b.length-1 ; i++ ) { b[i] = 0x00 ; }
 				n = this.in.read( b ) ;
 			}
 		} catch ( java.io.IOException e ) {
